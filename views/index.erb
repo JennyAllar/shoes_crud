@@ -1,3 +1,12 @@
 <p>
   Welcome!
 </p>
+
+<a href="/shoes/new">Add a shoe entry</a>
+
+<ul>
+<% array_of_shoes.each do |shoe| %>
+<li><b><%= shoe[:style] %></b>
+  <li><%= shoe[:size] %><br><br>
+<% end %>
+</ul>

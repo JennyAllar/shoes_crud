@@ -12,6 +12,18 @@ class Application < Sinatra::Application
   end
 
   get '/' do
-    erb :index
+    erb :index, locals: {array_of_shoes: DB[:shoes].to_a}
   end
+
+  get '/shoes/new' do
+    erb :"/shoes/new"
+  end
+
+  post '/shoes' do
+    shoes_id = params[:id]
+    DB[:shoes].where(id: shoes_id).insert(style: params[:style], size: params[:size])
+
+    redirect '/'
+  end
+
 end
