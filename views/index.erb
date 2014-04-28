@@ -5,8 +5,9 @@
 <a href="/shoes/new">Add a shoe entry</a>
 
 <ul>
-<% array_of_shoes.each do |shoe| %>
-<li><b><%= shoe[:style] %></b>
-  <li><%= shoe[:size] %><br><br>
-<% end %>
+  <% array_of_shoes.each do |shoe| %>
+    <li><b><a href="/shoes/<%= shoe[:id] %>/edit"><%= shoe[:style] %></b></a>
+    <li><%= shoe[:size] %>
+      <br><br>
+  <% end %>
 </ul>

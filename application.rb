@@ -22,7 +22,18 @@ class Application < Sinatra::Application
   post '/shoes' do
     shoes_id = params[:id]
     DB[:shoes].where(id: shoes_id).insert(style: params[:style], size: params[:size])
+    redirect '/'
+  end
 
+  get '/shoes/:id/edit' do
+    shoe_id = params[:id]
+    shoe = DB[:shoes][id: shoe_id]
+    erb :"/shoes/update", locals: {shoe: shoe}
+  end
+
+  put '/shoes/:id' do
+    shoes_id = params[:id]
+    DB[:shoes].where(id: shoes_id).update(style: params[:style], size: params[:size])
     redirect '/'
   end
 

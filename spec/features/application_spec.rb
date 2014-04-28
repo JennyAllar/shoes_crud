@@ -19,5 +19,30 @@ feature 'Homepage' do
     fill_in "size", with: "9"
 
     click_on "Add Shoe"
+
+    expect(page).to have_content"Doc Martens"
+    expect(page).to have_content"9"
+  end
+
+  scenario 'User can edit a shoe entry' do
+    visit '/'
+
+    click_on "Add a shoe entry"
+
+    fill_in "style", with: "Steve Madden"
+    fill_in "size", with: "9"
+
+    click_on "Add Shoe"
+
+    click_on "Steve Madden"
+
+    fill_in "style", with: "Adidas"
+
+    click_on "Update Shoes"
+
+    expect(page).to have_no_content "Steve Madden"
+    expect(page).to have_content "Adidas"
+
+
   end
 end
