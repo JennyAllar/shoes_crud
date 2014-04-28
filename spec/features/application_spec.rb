@@ -42,7 +42,26 @@ feature 'Homepage' do
 
     expect(page).to have_no_content "Steve Madden"
     expect(page).to have_content "Adidas"
+  end
 
+  scenario 'User can delete a shoe entry' do
+    visit '/'
+
+    click_on "Add a shoe entry"
+
+    fill_in "style", with: "Reebok"
+    fill_in "size", with: "99"
+
+    click_on "Add Shoe"
+
+    click_on "Reebok"
+
+    click_on "Delete Shoe"
+
+    expect(page).to have_content "Add a shoe entry"
+
+    expect(page).to have_no_content"Reebok"
+    expect(page).to have_no_content"99"
 
   end
 end
